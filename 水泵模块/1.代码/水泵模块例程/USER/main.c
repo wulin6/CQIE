@@ -35,6 +35,7 @@ int main(void)
 	OLED_Init();
 	printf("Start \n");
 	delay_ms(1000);
+	int i=0;
 	
 	OLED_Clear();
 	//显示“水泵状态:”
@@ -46,23 +47,45 @@ int main(void)
 
   while (1)
   {
-		key = Key_GetData();
-
-		if(key)
-			key_state++;
-		if(key_state%2==1)
-		{
-			BUMP_ON;
-			LED_On();
-			//OLED_ShowChinese(56,24,4,16,1);		//开
-			}
 		
-		if(key_state%2==0)
+		if(i>10)
 		{
-			BUMP_OFF;
-			LED_Off();
-		//OLED_ShowChinese(56,24,5,16,1);		//关
+				BUMP_ON;
+				LED_On();
+				OLED_ShowChinese(56,24,4,16,1);		//开
+				i=0;
+				delay_ms(1000);
+		
 		}
+		else
+		{
+		
+				BUMP_OFF;
+				LED_Off();
+				OLED_ShowChinese(56,24,5,16,1);		//关
+				
+				delay_ms(1000);
+		}
+	
+			i++;
+		
+		
+		
+		
+	
+//		key = Key_GetData();
+
+//		if(key)
+//			key_state++;
+//		if(key_state%2==1)
+//		{
+//			
+//			}
+//		
+//		if(key_state%2==0)
+//		{
+//			
+//		}
 
   }
 }
